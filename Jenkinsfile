@@ -19,6 +19,18 @@ pipeline {
                 sh 'mvn compile'
             }
         }
+       
+        stage ('Deploy') {
+               steps {
+                withCredentials([sshUserPrivateKey(credentialsId: 'deploy-server', keyFileVariable: 'keyFile')]) {
+                    script {
+                          sh 'scp -o StrictHostKeyChecking=no -i ${keyFile} -r /var/lib/jenkins/workspace/hello-world/target/java-hello-world.war azureuser@vm1-jenkins:/opt/tomcat/webapps/'
+                    }
+                }
+                   
+            }
+        }
+
 }
 
     post {
