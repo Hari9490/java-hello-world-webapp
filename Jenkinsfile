@@ -6,7 +6,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 // Checkout the code from your Git repository
-                git branch: 'master', credentialsId: ''github-cred'', url: 'git@github.com:Hari9490/java-hello-world-webapp.git'
+                git branch: 'master', credentialsId: 'github-cred', url: 'git@github.com:Hari9490/java-hello-world-webapp.git'
             }
         }
 
